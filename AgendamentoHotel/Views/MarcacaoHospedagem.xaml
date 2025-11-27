@@ -8,34 +8,93 @@
              
     <VerticalStackLayout VerticalOptions="Center"
                          HorizontalOptions="Center">
-        <Label 
+
+
+        <!--TITULO DA PAGINA-->
+            <Label 
             Text="Calculo da Diaria"
             FontFamily="Delius"
             FontSize="50"
             TextColor="{StaticResource Primary}"/>
-        
-        
+
+        <!--Borda com o formulario de envio-->
         <Border Padding="10">
+
             <VerticalStackLayout>
+
+                <!--Tabela com as informações a serem preenchidas-->
                 <Grid RowDefinitions="Auto, Auto"
-                      ColumnDefinitions="*,*,2*"
+                      ColumnDefinitions="*,*,2*" 
                       >
 
-
+                    <!--Quantidades de adultos (limite 10)-->
                     <Label Grid.Row="0" Grid.Column="0"
                            Text="Adultos:"
                            TextColor="Black"/>
+                    
                     <Label Grid.Row="0" Grid.Column="1"
                            TextColor="{DynamicResource Primary}"
-                           Text="10"/>
+                           Text="{Binding Value}"
+                           BindingContext="{x:Reference stp_adultos}"
+                           />
                     
-                    
-                    
+                    <Stepper Grid.Row="0" Grid.Column="2"
+                             x:Name="stp_adultos"
+                             Minimum="0"
+                             Maximum="10"
+                             Increment="1"/>
+
+
+                    <!--Quantidades de crianças (limite 10)-->
                     <Label Grid.Row="1" Grid.Column="0"
                            Text="Crianças:"
                            TextColor="Black"/>
 
+                    <Label Grid.Row="1" Grid.Column="1"
+                           TextColor="{DynamicResource Primary}"
+                           Text="{Binding Value}"
+                           BindingContext="{x:Reference spt_criancas}"/>
+
+                    <Stepper Grid.Row="1" Grid.Column="2"
+                             x:Name="spt_criancas"
+                             Minimum="0"
+                             Maximum="10"
+                             Increment="1"/>
                 </Grid>
+                
+                
+                <!--Escolher quarto-->
+                <Label
+                Text="Escolha sua Suite"/>
+
+                <Picker x:Name="pck_quarto"
+                        Title="Selecione sua acomodação"
+                        />
+
+                <!--Escolher o periodo da estadia-->
+                <Border Padding="10"
+                        Margin="10">
+
+                    <VerticalStackLayout>
+                        <Label Text="Período da estadia"/>
+                        <HorizontalStackLayout>
+                            <Label Text="Check-in: "/>
+                            <DatePicker x:Name="dtpck_checkin"
+                                        Format="dd/MM/yyyy"/>
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout>
+                            <Label Text="Check-out: "/>
+                            <DatePicker x:Name="dtpck_checkout"
+                                        Format="dd/MM/yyyy"/>
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+                    
+                <!--Submit-->
+                <Button Text="Avançar"
+                        Clicked="Button_Clicked"/>
+
             </VerticalStackLayout>
         </Border>
 
