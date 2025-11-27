@@ -8,7 +8,8 @@ namespace AgendamentoHotel
         {
             InitializeComponent();
 
-             MainPage = new MainPage();
+             MainPage = new NavigationPage(new Views.MarcacaoHospedagem());
+
         }
 
         protected override Window CreateWindow(IActivationState activationState)
